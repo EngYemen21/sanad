@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="سند — المساعد الذكي للأسرة السعودية للوصول إلى خدمات العمالة المنزلية المناسبة واتخاذ قرار أوضح." />
+  <title>سند | المساعد الذكي للأسرة السعودية</title>
+  <link rel="icon" type="image/webp" href="logo.webp" />
+  <style>
+    @font-face {
+      font-family: 'Handicrafts';
+      src: url('fonts/handicrafts/alfont_com_TheYearofHandicrafts-Regular.otf') format('opentype');
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Handicrafts';
+      src: url('fonts/handicrafts/alfont_com_TheYearofHandicrafts-Medium.otf') format('opentype');
+      font-weight: 500;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Handicrafts';
+      src: url('fonts/handicrafts/alfont_com_TheYearofHandicrafts-SemiBold.otf') format('opentype');
+      font-weight: 600;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: 'Handicrafts';
+      src: url('fonts/handicrafts/alfont_TheYearofHandicrafts-Black.otf') format('opentype');
+      font-weight: 900;
+      font-style: normal;
+    }
+
+    :root{
+      --navy:#0B2447;
+      --navy-2:#071A34;
+      --blue:#155EEF;
+      --green:#12B76A;
+      --green-2:#079455;
+      --mint:#E9FBF2;
+      --sky:#EEF5FF;
+      --gold:#C9A45C;
+      --white:#FFFFFF;
+      --soft:#F7F9FC;
+      --text:#182230;
+      --muted:#667085;
+      --line:#E4E7EC;
+      --shadow:0 24px 70px rgba(11,36,71,.12);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Handicrafts","Noto Sans Arabic","IBM Plex Sans Arabic",Tahoma,Arial,sans-serif;
+      color:var(--text);
+      background:var(--white);
+      line-height:1.75;
+      overflow-x:hidden;
+    }
+    a{text-decoration:none;color:inherit}
+    button,input,select,textarea{font:inherit}
+    .container{width:min(1180px,92%);margin:auto}
+
+    .topbar{
+      position:sticky;top:0;z-index:50;
+      background:rgba(255,255,255,.88);
+      backdrop-filter:blur(18px);
+      border-bottom:1px solid rgba(228,231,236,.85);
+    }
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:24px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;color:var(--navy)}
+    .brand-logo{
+      height:46px;
+      width:auto;
+      object-fit:contain;
+      display:block;
+      transition:transform .2s ease-in-out;
+      mix-blend-mode:multiply;
+    }
+    .brand:hover .brand-logo{
+      transform:scale(1.03);
+    }
+    .footer-logo{
+      height:38px;
+    }
+    .chat-avatar-logo{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:left center;
+      background:#fff;
+    }
+    .brand-mark{
+      width:50px;height:50px;border-radius:17px;
+      display:grid;place-items:center;
+      background:linear-gradient(145deg,var(--green),#4AD69A);
+      box-shadow:0 12px 28px rgba(18,183,106,.24);
+      color:white;
+    }
+    .brand-mark svg{width:29px;height:29px}
+    .brand-copy{display:flex;flex-direction:column;line-height:1.05}
+    .brand-copy strong{font-size:25px;letter-spacing:.1px}
+    .brand-copy small{font-size:10px;color:var(--muted);font-weight:700;margin-top:6px}
+    .nav-links{display:flex;align-items:center;gap:25px;color:#475467;font-weight:700;font-size:14px}
+    .nav-links a:hover{color:var(--blue)}
+    .nav-actions{display:flex;align-items:center;gap:10px}
+
+    .btn{
+      border:none;cursor:pointer;
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      padding:14px 23px;border-radius:16px;font-weight:900;
+      transition:.25s ease;
+    }
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--green);color:#fff;box-shadow:0 15px 30px rgba(18,183,106,.24)}
+    .btn-primary:hover{background:var(--green-2)}
+    .btn-outline{border:1px solid var(--line);color:var(--navy);background:#fff}
+    .btn-white{background:#fff;color:var(--navy);box-shadow:0 14px 30px rgba(0,0,0,.12)}
+
+    .hero{
+      position:relative;
+      padding:82px 0 72px;
+      background:
+        radial-gradient(circle at 16% 18%,rgba(18,183,106,.14),transparent 24%),
+        radial-gradient(circle at 86% 16%,rgba(21,94,239,.12),transparent 22%),
+        linear-gradient(180deg,#FFFFFF 0%,#F7FBFF 100%);
+      overflow:hidden;
+    }
+    .hero:before,.hero:after{
+      content:"";position:absolute;border-radius:50%;filter:blur(1px);pointer-events:none
+    }
+    .hero:before{width:310px;height:310px;border:1px solid rgba(21,94,239,.10);left:-150px;top:85px}
+    .hero:after{width:450px;height:450px;border:1px solid rgba(18,183,106,.11);right:-260px;bottom:-160px}
+    .hero-grid{display:grid;grid-template-columns:1.04fr .96fr;gap:65px;align-items:center;position:relative;z-index:2}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;
+      color:var(--green-2);background:var(--mint);border:1px solid #C9F2DD;
+      padding:8px 14px;border-radius:999px;font-size:13px;font-weight:900;
+    }
+    .eyebrow-dot{width:8px;height:8px;border-radius:50%;background:var(--green);box-shadow:0 0 0 5px rgba(18,183,106,.12)}
+    h1{
+      color:var(--navy);font-size:clamp(45px,6vw,74px);line-height:1.13;
+      letter-spacing:-2.4px;margin:23px 0 20px;
+    }
+    h1 span{color:var(--green)}
+    .hero-copy>p{font-size:20px;color:#475467;max-width:660px;margin:0 0 28px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .trust-row{display:flex;gap:20px;flex-wrap:wrap;margin-top:27px;color:#344054;font-size:14px;font-weight:800}
+    .trust-row span{display:flex;align-items:center;gap:8px}
+    .check{width:21px;height:21px;border-radius:50%;display:grid;place-items:center;background:var(--mint);color:var(--green-2);font-size:13px}
+
+    .assistant-shell{
+      position:relative;
+      background:linear-gradient(145deg,var(--navy),#123D73);
+      border-radius:34px;padding:18px;
+      box-shadow:0 35px 90px rgba(11,36,71,.26);
+      transform:rotate(-1.2deg);
+    }
+    .assistant-shell:before{
+      content:"";position:absolute;inset:-12px;border-radius:44px;border:1px solid rgba(21,94,239,.15);z-index:-1
+    }
+    .assistant-card{background:#fff;border-radius:25px;overflow:hidden;transform:rotate(1.2deg)}
+    .chat-head{display:flex;align-items:center;justify-content:space-between;padding:17px 18px;border-bottom:1px solid var(--line)}
+    .chat-brand{display:flex;align-items:center;gap:10px}
+    .chat-avatar{width:42px;height:42px;border-radius:14px;background:var(--green);display:grid;place-items:center;color:#fff;overflow:hidden}
+    .chat-title strong{display:block;color:var(--navy);font-size:15px}
+    .chat-title small{color:var(--green-2);font-weight:800;font-size:11px}
+    .chat-dots{display:flex;gap:4px}.chat-dots i{width:5px;height:5px;border-radius:50%;background:#98A2B3}
+    .chat-body{background:#F8FAFC;padding:18px;min-height:430px}
+    .msg{max-width:83%;padding:12px 14px;border-radius:16px;margin-bottom:12px;font-size:13px;line-height:1.65;box-shadow:0 5px 14px rgba(16,24,40,.04)}
+    .msg.ai{background:#fff;border:1px solid #E5EAF0;border-top-right-radius:5px;color:#344054}
+    .msg.user{background:var(--navy);color:#fff;margin-right:auto;border-top-left-radius:5px}
+    .choice-title{font-size:11px;color:#667085;font-weight:800;margin:15px 2px 8px}
+    .choices{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+    .choice{background:#fff;border:1px solid var(--line);border-radius:13px;padding:10px;font-size:11px;color:#344054;font-weight:800}
+    .choice.active{border-color:#80DDB2;background:#F0FDF7;color:var(--green-2)}
+    .recommendation{margin-top:15px;border:1px solid #C9F2DD;background:var(--mint);border-radius:16px;padding:13px}
+    .recommendation small{display:block;color:var(--green-2);font-weight:900}
+    .recommendation strong{display:block;color:var(--navy);margin-top:3px;font-size:13px}
+    .floating-badge{
+      position:absolute;left:-45px;bottom:48px;background:#fff;border:1px solid var(--line);
+      border-radius:19px;padding:14px 16px;box-shadow:var(--shadow);transform:rotate(1.2deg)
+    }
+    .floating-badge b{display:block;color:var(--navy);font-size:18px}.floating-badge span{font-size:11px;color:var(--muted)}
+
+    .numbers{padding:0 0 72px;background:#F7FBFF}
+    .numbers-grid{
+      display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+      background:var(--line);border:1px solid var(--line);border-radius:25px;overflow:hidden;
+      box-shadow:0 15px 45px rgba(16,24,40,.05)
+    }
+    .number{background:#fff;padding:28px;text-align:center}
+    .number strong{display:block;color:var(--navy);font-size:31px;line-height:1.2}.number span{color:var(--muted);font-size:14px;font-weight:700}
+
+    section{padding:88px 0}
+    .section-head{max-width:790px;margin:0 auto 46px;text-align:center}
+    .section-kicker{color:var(--green-2);font-size:13px;font-weight:900;letter-spacing:.2px}
+    .section-head h2{color:var(--navy);font-size:clamp(32px,4vw,49px);line-height:1.25;margin:9px 0 12px;letter-spacing:-1px}
+    .section-head p{color:var(--muted);font-size:18px;margin:0}
+
+    .problems{background:#fff}
+    .cards-3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .problem-card,.service-card,.why-card{
+      border:1px solid var(--line);background:#fff;border-radius:26px;padding:28px;
+      box-shadow:0 16px 40px rgba(16,24,40,.055);transition:.25s ease
+    }
+    .problem-card:hover,.service-card:hover,.why-card:hover{transform:translateY(-5px);box-shadow:0 24px 55px rgba(16,24,40,.09)}
+    .icon-box{width:56px;height:56px;border-radius:18px;display:grid;place-items:center;background:var(--sky);color:var(--blue);margin-bottom:18px}
+    .icon-box.green{background:var(--mint);color:var(--green-2)}
+    .icon-box.gold{background:#FFF7E8;color:#A66E16}
+    .icon-box svg{width:27px;height:27px}
+    .problem-card h3,.service-card h3,.why-card h3{margin:0 0 8px;color:var(--navy);font-size:22px}
+    .problem-card p,.service-card p,.why-card p{margin:0;color:var(--muted);font-size:15.5px}
+
+    .solution{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+    .solution:before{content:"";position:absolute;width:430px;height:430px;border-radius:50%;background:rgba(21,94,239,.22);left:-200px;top:-170px}
+    .solution .section-head h2{color:#fff}.solution .section-head p{color:#D0D5DD}.solution .section-kicker{color:#70E0AA}
+    .services{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;position:relative;z-index:2}
+    .service-card{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);box-shadow:none;color:#fff}
+    .service-card h3{color:#fff}.service-card p{color:#D0D5DD}
+    .service-card .tag{display:inline-block;margin-top:18px;padding:6px 10px;border-radius:999px;background:rgba(18,183,106,.16);color:#8FF0BF;font-size:11px;font-weight:900}
+
+    .how{background:var(--soft)}
+    .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:17px;counter-reset:step}
+    .step{background:#fff;border:1px solid var(--line);border-radius:25px;padding:25px;position:relative;min-height:215px}
+    .step:before{counter-increment:step;content:counter(step);width:42px;height:42px;border-radius:14px;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:900;margin-bottom:20px}
+    .step h3{color:var(--navy);margin:0 0 8px;font-size:20px}.step p{color:var(--muted);margin:0;font-size:14.5px}
+    .step:not(:last-child):after{content:"";position:absolute;left:-16px;top:46px;width:16px;border-top:2px dashed #CDD5DF}
+
+    .compare-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:35px;align-items:center}
+    .compare-copy h2{color:var(--navy);font-size:44px;line-height:1.25;margin:8px 0 16px}
+    .compare-copy p{color:var(--muted);font-size:17px}
+    .mini-points{display:grid;gap:12px;margin-top:23px}
+    .mini-point{display:flex;align-items:flex-start;gap:12px;color:#344054;font-weight:800}
+    .mini-point i{font-style:normal;width:28px;height:28px;flex:none;border-radius:9px;background:var(--mint);color:var(--green-2);display:grid;place-items:center}
+    .compare-panels{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .panel{border-radius:27px;padding:25px;min-height:365px}
+    .panel.old{background:#F9FAFB;border:1px solid var(--line)}
+    .panel.new{background:linear-gradient(150deg,var(--navy),#16457F);color:#fff;box-shadow:var(--shadow)}
+    .panel-label{font-size:12px;font-weight:900;margin-bottom:18px;color:#B42318}.new .panel-label{color:#8FF0BF}
+    .panel h3{font-size:24px;margin:0 0 19px;color:var(--navy)}.new h3{color:#fff}
+    .panel ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+    .panel li{display:flex;gap:10px;color:#667085;font-size:14px}.new li{color:#D0D5DD}
+    .panel li:before{content:"×";font-weight:900;color:#D92D20}.new li:before{content:"✓";color:#6CE9A6}
+
+    .trust-section{background:#fff}
+    .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .why-card{text-align:center;padding:24px}.why-card .icon-box{margin:0 auto 15px}.why-card h3{font-size:18px}.why-card p{font-size:13.5px}
+
+    .vision-strip{padding:62px 0;background:linear-gradient(140deg,#EAF7FF,#F0FDF7)}
+    .vision-card{display:grid;grid-template-columns:1fr auto;align-items:center;gap:30px;background:#fff;border:1px solid rgba(21,94,239,.09);border-radius:30px;padding:34px 40px;box-shadow:0 22px 55px rgba(16,24,40,.07)}
+    .vision-card h2{margin:0 0 7px;color:var(--navy);font-size:32px}.vision-card p{margin:0;color:var(--muted);font-size:16px}
+    .vision-badges{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end}.vision-badges span{padding:10px 13px;border-radius:13px;background:var(--sky);color:var(--blue);font-weight:900;font-size:12px}
+
+    .cta-section{background:#fff}
+    .cta-box{display:grid;grid-template-columns:1fr .9fr;gap:50px;align-items:center;background:linear-gradient(145deg,var(--navy-2),var(--navy));border-radius:38px;padding:46px;color:#fff;box-shadow:0 35px 80px rgba(11,36,71,.22)}
+    .cta-copy .section-kicker{color:#74E4AD}.cta-copy h2{font-size:42px;line-height:1.25;margin:9px 0 14px}.cta-copy p{color:#D0D5DD;font-size:17px;margin:0 0 24px}
+    .cta-notes{display:grid;gap:10px;color:#EAECF0;font-size:14px}.cta-notes span{display:flex;align-items:center;gap:9px}
+    .lead-form{background:#fff;border-radius:27px;padding:24px;color:var(--text)}
+    .lead-form h3{color:var(--navy);margin:0 0 5px;font-size:23px}.lead-form>p{color:var(--muted);margin:0 0 14px;font-size:13px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .field{display:flex;flex-direction:column;gap:5px}.field.full{grid-column:1/-1}
+    .field label{font-size:11px;font-weight:900;color:#475467}
+    input,select,textarea{width:100%;border:1px solid var(--line);background:#fff;border-radius:12px;padding:12px 13px;color:var(--text);outline:none;transition:.2s}
+    input:focus,select:focus,textarea:focus{border-color:#84ADFF;box-shadow:0 0 0 4px rgba(21,94,239,.09)}
+    textarea{min-height:82px;resize:vertical}
+    .lead-form .btn{width:100%;margin-top:11px}
+    .form-note{text-align:center;color:#98A2B3;font-size:10px;margin-top:9px}
+
+    footer{background:#F8FAFC;border-top:1px solid var(--line);padding:34px 0}
+    .footer-grid{display:flex;align-items:center;justify-content:space-between;gap:20px}
+    .footer-copy{color:var(--muted);font-size:12px}.footer-links{display:flex;gap:16px;color:#475467;font-size:12px;font-weight:800}
+
+    .mobile-cta{display:none}
+    .toast{position:fixed;right:25px;bottom:25px;background:var(--navy);color:#fff;padding:14px 18px;border-radius:14px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transform:translateY(15px);transition:.3s;z-index:100;font-size:13px}
+    .toast.show{opacity:1;transform:translateY(0)}
+
+    @media(max-width:1050px){
+      .nav-links{display:none}
+      .hero-grid,.compare-wrap,.cta-box{grid-template-columns:1fr}
+      .hero-copy{text-align:center}.hero-copy>p{margin-inline:auto}.hero-actions,.trust-row{justify-content:center}
+      .assistant-shell{max-width:650px;margin:15px auto 0}.floating-badge{left:8px}
+      .cards-3,.services{grid-template-columns:repeat(2,1fr)}
+      .steps{grid-template-columns:repeat(2,1fr)}.step:after{display:none}
+      .why-grid{grid-template-columns:repeat(2,1fr)}
+    }
+    @media(max-width:700px){
+      .nav-actions .btn-outline{display:none}.brand-copy small{display:none}
+      .hero{padding-top:50px}.hero-grid{gap:42px}h1{font-size:43px;letter-spacing:-1px}
+      .hero-copy>p{font-size:17px}.hero-actions .btn{width:100%}
+      .floating-badge{display:none}.assistant-shell{padding:10px;border-radius:25px}.assistant-card{border-radius:19px}.chat-body{min-height:auto}
+      .numbers-grid,.cards-3,.services,.steps,.compare-panels,.why-grid{grid-template-columns:1fr}
+      .number{padding:22px}.section-head{text-align:right}.section-head p{font-size:16px}
+      section{padding:66px 0}.compare-copy h2{font-size:35px}.vision-card{grid-template-columns:1fr;padding:28px}.vision-badges{justify-content:flex-start}
+      .cta-box{padding:25px;border-radius:28px}.cta-copy h2{font-size:34px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
+      .footer-grid{flex-direction:column;text-align:center}.mobile-cta{display:flex;position:fixed;left:12px;right:12px;bottom:12px;z-index:60;background:var(--green);color:#fff;border-radius:16px;padding:13px 18px;align-items:center;justify-content:center;font-weight:900;box-shadow:0 16px 40px rgba(18,183,106,.33)}
+      footer{padding-bottom:85px}
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="سند">
+        <img src="logo.webp" alt="شعار سند" class="brand-logo">
+      </a>
+      <nav class="nav-links" aria-label="التنقل الرئيسي">
+        <a href="#services">الخدمات</a>
+        <a href="#how">كيف تعمل سند؟</a>
+        <a href="#why">لماذا سند؟</a>
+        <a href="#request">ابدئي الآن</a>
+      </nav>
+      <div class="nav-actions">
+        <a class="btn btn-outline" href="#how">اكتشفي سند</a>
+        <a class="btn btn-primary" href="#request">سجلي احتياجك</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span>مساعد ذكي يفهم احتياج أسرتك</div>
+          <h1>قرار أذكى لخدمات<br><span>أسرتك اليومية</span></h1>
+          <p>سند تساعد الأسرة السعودية على الوصول إلى خيار العمالة المنزلية الأنسب، ومقارنة الاستقدام والتأجير والبدائل المتاحة، من خلال تجربة بسيطة ومدعومة بالذكاء الاصطناعي.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#request">
+              ابدئي طلبك مجانًا
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+            </a>
+            <a class="btn btn-outline" href="#how">كيف تساعدني سند؟</a>
+          </div>
+          <div class="trust-row">
+            <span><i class="check">✓</i>خيارات تناسب احتياج الأسرة</span>
+            <span><i class="check">✓</i>مقارنة أوضح وأسرع</span>
+            <span><i class="check">✓</i>متابعة وبدائل عند الحاجة</span>
+          </div>
+        </div>
+
+        <div class="assistant-shell" aria-label="محاكاة مساعد سند الذكي">
+          <div class="assistant-card">
+            <div class="chat-head">
+              <div class="chat-brand">
+                <div class="chat-avatar">
+                  <img src="logo.webp" alt="شعار سند" class="chat-avatar-logo">
+                </div>
+                <div class="chat-title"><strong>مساعد سند الذكي</strong><small>متصل الآن</small></div>
+              </div>
+              <div class="chat-dots"><i></i><i></i><i></i></div>
+            </div>
+            <div class="chat-body">
+              <div class="msg ai">أهلًا بكِ 🌿 ساعديني أفهم احتياج أسرتك، وأنا أرتّب لك الخيارات الأنسب.</div>
+              <div class="msg user">أحتاج عاملة منزلية لأسرة فيها طفلان، وأفضّل خيارًا سريعًا وميزانيته واضحة.</div>
+              <div class="msg ai">ممتاز. هل تفضّلين الاستقدام بعقد طويل، أو التأجير الشهري كحل أسرع؟</div>
+              <div class="choice-title">اختاري الأولوية الأهم</div>
+              <div class="choices">
+                <div class="choice active">سرعة الوصول</div>
+                <div class="choice">السعر الأقل</div>
+                <div class="choice">خبرة مع الأطفال</div>
+                <div class="choice">عقد طويل</div>
+              </div>
+              <div class="recommendation"><small>الاقتراح الأقرب لاحتياجك</small><strong>بدء بخيار التأجير الشهري، مع مقارنة بدائل الاستقدام المتاحة لاحقًا.</strong></div>
+            </div>
+          </div>
+          <div class="floating-badge"><b>قرار واحد أوضح</b><span>بدل عشرات الاتصالات والمقارنات</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="numbers" aria-label="خبرة فريق سند">
+      <div class="container numbers-grid">
+        <div class="number"><strong>60+</strong><span>مكتبًا ضمن خبرة وشبكة الفريق</span></div>
+        <div class="number"><strong>90+</strong><span>أسرة تم فهم احتياجاتها وخدمتها</span></div>
+        <div class="number"><strong>24/7</strong><span>تجربة رقمية تبدأ في الوقت المناسب لك</span></div>
+      </div>
+    </section>
+
+    <section class="problems">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">المشكلة التي نحلها</div>
+          <h2>الأسرة لا تحتاج مزيدًا من الخيارات… بل تحتاج الخيار الصحيح</h2>
+          <p>رحلة البحث عن عاملة منزلية قد تبدأ باتصالات كثيرة وتنتهي بحيرة أكبر. سند تختصر الطريق وتساعد الأسرة على اتخاذ قرار أكثر وضوحًا.</p>
+        </div>
+        <div class="cards-3">
+          <article class="problem-card">
+            <div class="icon-box">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/><path d="M8 11h6M11 8v6"/></svg>
+            </div>
+            <h3>بحث مشتّت</h3>
+            <p>مكاتب متعددة، أسعار مختلفة، ومدد غير واضحة تجعل المقارنة مرهقة للأسرة.</p>
+          </article>
+          <article class="problem-card">
+            <div class="icon-box gold">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+            </div>
+            <h3>وقت وانتظار</h3>
+            <p>قد يتأخر الخيار الأول أو يتعثر، فتضطر الأسرة إلى بدء الرحلة من الصفر.</p>
+          </article>
+          <article class="problem-card">
+            <div class="icon-box green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <h3>قرار حساس</h3>
+            <p>اختيار شخص يدخل المنزل ويؤثر في راحة الأسرة يحتاج فهمًا أدق، لا مجرد قائمة أسماء.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="solution" id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">حل واحد يبدأ من احتياج الأسرة</div>
+          <h2>سند تقارن، ترشّح، وتساعدك حتى الوصول للخيار الأنسب</h2>
+          <p>نبدأ بخدمات العمالة المنزلية لأنها من أكثر القرارات اليومية تأثيرًا على استقرار الأسرة، ثم نتوسع تدريجيًا إلى خدمات أسرية أخرى.</p>
+        </div>
+        <div class="services">
+          <article class="service-card">
+            <div class="icon-box green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-6h6v6"/></svg>
+            </div>
+            <h3>الاستقدام</h3>
+            <p>مقارنة الخيارات بناءً على احتياج الأسرة والميزانية والتفضيلات، بدل البحث العشوائي.</p>
+            <span class="tag">المرحلة الأولى</span>
+          </article>
+          <article class="service-card">
+            <div class="icon-box green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4M16 2v4M3 10h18"/><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M8 15h.01M12 15h.01M16 15h.01"/></svg>
+            </div>
+            <h3>التأجير الشهري</h3>
+            <p>حلول أسرع وأكثر مرونة عند الحاجة المؤقتة أو حين تكون سرعة الوصول هي الأولوية.</p>
+            <span class="tag">خيارات مرنة</span>
+          </article>
+          <article class="service-card">
+            <div class="icon-box green">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18"/><path d="m15 6 6 6-6 6"/><path d="m9 18-6-6 6-6"/></svg>
+            </div>
+            <h3>البدائل والمتابعة</h3>
+            <p>إذا لم يناسبك الخيار الأول أو تعثر، تساعدك سند على الانتقال إلى بديل أقرب لاحتياجك.</p>
+            <span class="tag">لا تبدئين من الصفر</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">كيف تعمل سند؟</div>
+          <h2>أربع خطوات بسيطة من الاحتياج إلى القرار</h2>
+          <p>تجربة صممت لتكون واضحة وسريعة، وتبدأ من الأسرة لا من قائمة الخدمات.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><h3>سجلي احتياجك</h3><p>المدينة، نوع الخدمة، الميزانية، وأهم التفاصيل المتعلقة بالأسرة.</p></article>
+          <article class="step"><h3>نحلل الأولويات</h3><p>نفهم ما يهمك أكثر: السرعة، الخبرة، نوع العقد، أو الميزانية.</p></article>
+          <article class="step"><h3>نقارن الخيارات</h3><p>نعرض البدائل الأقرب لاحتياجك بطريقة سهلة ومباشرة.</p></article>
+          <article class="step"><h3>تختارين بثقة</h3><p>تتخذين القرار، ونساعدك في المتابعة أو الانتقال إلى بديل عند الحاجة.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container compare-wrap">
+        <div class="compare-copy">
+          <div class="section-kicker">تجربة مختلفة</div>
+          <h2>بدل أن تتكيّف الأسرة مع السوق، سند تجعل السوق أقرب للأسرة</h2>
+          <p>القيمة الحقيقية ليست في جمع المكاتب داخل منصة واحدة فقط، بل في فهم الأسرة أولًا ثم ترتيب الخيارات حول احتياجها.</p>
+          <div class="mini-points">
+            <div class="mini-point"><i>✓</i><span>توصية مبنية على وضع الأسرة، لا على إعلان واحد</span></div>
+            <div class="mini-point"><i>✓</i><span>عرض الاستقدام والتأجير والبدائل في تجربة واحدة</span></div>
+            <div class="mini-point"><i>✓</i><span>رحلة قابلة للتوسع إلى خدمات أسرية أخرى مستقبلًا</span></div>
+          </div>
+        </div>
+        <div class="compare-panels">
+          <div class="panel old">
+            <div class="panel-label">الطريقة التقليدية</div>
+            <h3>بحث واتصالات وحيرة</h3>
+            <ul>
+              <li>التواصل مع كل مكتب بشكل منفصل</li>
+              <li>مقارنة الأسعار والمدد يدويًا</li>
+              <li>صعوبة معرفة الأنسب لوضع الأسرة</li>
+              <li>البدء من جديد عند تعثر الخيار</li>
+            </ul>
+          </div>
+          <div class="panel new">
+            <div class="panel-label">مع سند</div>
+            <h3>احتياج واحد وخيارات أوضح</h3>
+            <ul>
+              <li>طلب واحد يشرح احتياج الأسرة</li>
+              <li>مقارنة مبسطة بين الحلول</li>
+              <li>توصية أقرب للأولوية الحقيقية</li>
+              <li>بدائل ومتابعة دون إعادة الرحلة</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="trust-section" id="why">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-kicker">لماذا سند؟</div>
+          <h2>منصة محلية تفهم تفاصيل الأسرة السعودية</h2>
+          <p>سند تجمع بين خبرة السوق والتقنية لتقدم تجربة أكثر إنسانية ووضوحًا.</p>
+        </div>
+        <div class="why-grid">
+          <article class="why-card"><div class="icon-box green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg></div><h3>ثقة ووضوح</h3><p>عرض واضح للخيارات دون وعود مبالغ فيها.</p></article>
+          <article class="why-card"><div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.5 3a3.5 3.5 0 0 0-3.45 4.1A4.5 4.5 0 0 0 7 16h1v2a3 3 0 0 0 6 0v-2h1a4.5 4.5 0 0 0 .95-8.9A3.5 3.5 0 0 0 12.5 3"/><path d="M9 8h6M9 12h6"/></svg></div><h3>ذكاء محلي</h3><p>تجربة تفهم اللغة والاحتياجات والسياق السعودي.</p></article>
+          <article class="why-card"><div class="icon-box gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h3>خبرة قطاعية</h3><p>معرفة مباشرة باحتياجات الأسر ومكاتب الاستقدام.</p></article>
+          <article class="why-card"><div class="icon-box green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg></div><h3>حل قابل للتوسع</h3><p>نبدأ بالعمالة المنزلية ونتوسع لخدمات الأسرة اليومية.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="vision-strip">
+      <div class="container vision-card">
+        <div>
+          <h2>اليوم: العمالة المنزلية. غدًا: منصة الأسرة الأكثر شمولًا.</h2>
+          <p>رؤية سند هي بناء طبقة ذكية تساعد الأسرة في الوصول إلى الخدمات المناسبة واتخاذ قرارات أفضل لحياة أكثر استقرارًا ورفاهية.</p>
+        </div>
+        <div class="vision-badges"><span>رعاية الأسرة</span><span>التعليم</span><span>الخدمات المنزلية</span><span>جودة الحياة</span></div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="request">
+      <div class="container cta-box">
+        <div class="cta-copy">
+          <div class="section-kicker">ابدئي من هنا</div>
+          <h2>قولي لسند ما الذي تحتاجه أسرتك</h2>
+          <p>اتركي بياناتك واحتياجك الأولي، وسيتم ترتيب الخيارات المناسبة والتواصل معك لاستكمال التفاصيل.</p>
+          <div class="cta-notes">
+            <span><i class="check">✓</i>التسجيل الأولي مجاني</span>
+            <span><i class="check">✓</i>بياناتك تستخدم لخدمة طلبك فقط</span>
+            <span><i class="check">✓</i>يمكنك تعديل احتياجك في أي وقت</span>
+          </div>
+        </div>
+        <form class="lead-form" id="leadForm">
+          <h3>سجلي احتياجك</h3>
+          <p>يستغرق أقل من دقيقة.</p>
+          <div class="form-grid">
+            <div class="field"><label for="name">الاسم</label><input id="name" name="name" required placeholder="اكتبي الاسم" /></div>
+            <div class="field"><label for="phone">رقم الجوال</label><input id="phone" name="phone" required inputmode="tel" placeholder="05xxxxxxxx" /></div>
+            <div class="field"><label for="city">المدينة</label><select id="city" name="city" required><option value="">اختاري المدينة</option><option>الرياض</option><option>جدة</option><option>مكة المكرمة</option><option>المدينة المنورة</option><option>الدمام</option><option>الخبر</option><option>مدينة أخرى</option></select></div>
+            <div class="field"><label for="service">الخدمة المطلوبة</label><select id="service" name="service" required><option value="">اختاري الخدمة</option><option>استقدام عاملة منزلية</option><option>تأجير عاملة بالشهر</option><option>سائق خاص</option><option>رعاية كبار السن</option><option>أحتاج مساعدة في الاختيار</option></select></div>
+            <div class="field full"><label for="details">تفاصيل إضافية</label><textarea id="details" name="details" placeholder="عدد أفراد الأسرة، وجود أطفال أو كبار سن، والأولوية الأهم لك..."></textarea></div>
+          </div>
+          <button class="btn btn-primary" type="submit">إرسال الطلب</button>
+          <div class="form-note">هذه نسخة تجريبية. اربطي النموذج بواتساب أو نظام إدارة العملاء عند النشر.</div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <a class="brand" href="#top">
+        <img src="logo.webp" alt="شعار سند" class="brand-logo footer-logo">
+      </a>
+      <div class="footer-copy">© 2026 سند. جميع الحقوق محفوظة.</div>
+      <div class="footer-links"><a href="#">سياسة الخصوصية</a><a href="#">الشروط والأحكام</a><a href="#request">تواصل معنا</a></div>
+    </div>
+  </footer>
+
+  <a class="mobile-cta" href="#request">سجلي احتياجك مجانًا</a>
+  <div class="toast" id="toast">تم استلام البيانات التجريبية بنجاح ✓</div>
+
+  <script>
+    const form = document.getElementById('leadForm');
+    const toast = document.getElementById('toast');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      if(!form.checkValidity()){
+        form.reportValidity();
+        return;
+      }
+      toast.classList.add('show');
+      setTimeout(()=>toast.classList.remove('show'), 3200);
+      // عند النشر: اربطي هذا النموذج بواتساب، بريد إلكتروني، أو نظام CRM.
+    });
+  </script>
+</body>
+</html>
